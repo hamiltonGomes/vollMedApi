@@ -16,7 +16,7 @@ public class PacienteController {
     @Autowired
     private PacienteRepository repository;
 
-    @PostMapping("/cadastrarMedico")
+    @PostMapping("/cadastrarPaciente")
     @Transactional
     public void cadastrar(@RequestBody @Valid DadosCadastroPaciente dados) {
         repository.save(new Paciente(dados));
@@ -29,9 +29,14 @@ public class PacienteController {
 
     @PutMapping("/atualizarPaciente")
     @Transactional
-    public void atualizarPaciente(@RequestBody @Valid DadosAtualizacaoPaciente dados){
+    public void atualizarPaciente(@RequestBody @Valid DadosAtualizacaoPaciente dados) {
         var paciente = repository.getReferenceById(dados.id());
         paciente.atualizarInformacoesPaciente(dados);
     }
 
+    @DeleteMapping("/deletarPaciente/{id}")
+    @Transactional
+    public void deletarPaciente(@PathVariable long id) {
+        repository.deleteById(id);
+    }
 }
