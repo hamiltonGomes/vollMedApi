@@ -1,7 +1,7 @@
 package med.voll.api.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api.paciente.*;
+import med.voll.api.domain.paciente.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -48,7 +48,8 @@ public class PacienteController {
     @DeleteMapping("/deletarPaciente/{id}")
     @Transactional
     public ResponseEntity deletarPaciente(@PathVariable long id) {
-        repository.deleteById(id);
+//        repository.deleteById(id);
+        repository.getReferenceById(id).desativarPaciente();
 
         return ResponseEntity.noContent().build();
     }

@@ -1,4 +1,4 @@
-package med.voll.api.paciente;
+package med.voll.api.domain.paciente;
 
 public record DadosListagemPaciente(long id, String nome, String email, String telefone, String cpf) {
     // This way I pass patient values into my DTO, bringing the information I need.
